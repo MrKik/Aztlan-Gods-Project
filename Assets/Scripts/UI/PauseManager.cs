@@ -51,11 +51,24 @@ public class PauseManager : MonoBehaviour
         //menu.SetActive(false);
     }
 
-    IEnumerator WaitTime()
+    IEnumerator WaitTimeFrame()
     {
         print(Time.time);
-        yield return new WaitForSecondsRealtime(0.1f);
+        //yield return new WaitForSecondsRealtime(0.1f);
+        
         print(Time.time);
+        
+        AudioListener.pause = false;
+        
+        menu.SetActive(false);
+        yield return new WaitForEndOfFrame();
+        Time.timeScale = 1;
+        paused = false;
+    }
+
+    IEnumerator WaitTime()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1;
         AudioListener.pause = false;
         paused = false;

@@ -54,6 +54,7 @@ public class SoldierController : MonoBehaviour
         // idle state (patrolling state)
         if (currentState == "WalkingState")
         {
+            enemyAnim.SetTrigger("IsGone");
             //Debug.Log(currentState);
             //Debug.Log(distance);
             transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speedWalk * Time.deltaTime);
@@ -78,6 +79,11 @@ public class SoldierController : MonoBehaviour
             if(distance < attackRange)
             {
                 currentState = "AttackState";
+            }
+
+            if(distance > 3*attackRange)
+            {
+                currentState = "WalkingState";
             }
             
             if(target.position.x > transform.position.x)
