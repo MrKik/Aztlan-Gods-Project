@@ -119,6 +119,7 @@ public class DashCharacterMovement : MonoBehaviour
     {
         Vector3 move = new Vector3(aimDash.x, aimDash.y, 0);
         ccontroller.Move(move * dashSpeed * Time.deltaTime);
+        AudioManager.instance.PlayDashCualli();
     }
 
     private void OnEnable()

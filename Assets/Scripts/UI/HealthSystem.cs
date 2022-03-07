@@ -9,12 +9,11 @@ public class HealthSystem : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    characterMovement playerData;
-
-    //public void UpdateHealth(int maxHealth, int currentHealth)
-
-    //numOfHearts = maxHealth;
-    //health = currentHealth;
+    public void UpdateHealth(int maxHealth, int currentHealth)
+    {
+        numOfHearts = maxHealth;
+        health = currentHealth;
+    }
     private void Update()
     {
 

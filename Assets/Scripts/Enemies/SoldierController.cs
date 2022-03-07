@@ -120,7 +120,8 @@ public class SoldierController : MonoBehaviour
 
     private void ExecuteAttack()
     {
-
+        // launching audio of the attack
+        AudioManager.instance.PlayAttackSoldier();
         // Detect enemies in range
         Collider[] hitPlayer = Physics.OverlapSphere(attackPointEnemy.position, attackPointRangeEnemy, playerLayers);
 

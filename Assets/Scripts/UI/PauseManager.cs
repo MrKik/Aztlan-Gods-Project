@@ -37,9 +37,11 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
-        AudioListener.pause = true;
+        //AudioListener.pause = true;
         paused = true;
         menu.SetActive(true);
+        AudioManager.instance.StopWalkSoldier();
+        AudioManager.instance.PlayPauseButton();
     }
 
     public void ResumeGame()
@@ -53,22 +55,22 @@ public class PauseManager : MonoBehaviour
 
     IEnumerator WaitTimeFrame()
     {
-        print(Time.time);
-        //yield return new WaitForSecondsRealtime(0.1f);
+        //print(Time.time);
+        ////yield return new WaitForSecondsRealtime(0.1f);
         
-        print(Time.time);
+        //print(Time.time);
         
-        AudioListener.pause = false;
-        
-        menu.SetActive(false);
         yield return new WaitForEndOfFrame();
         Time.timeScale = 1;
+        AudioListener.pause = false;
         paused = false;
+        menu.SetActive(false);
     }
+        
 
     IEnumerator WaitTime()
     {
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.3f);
         Time.timeScale = 1;
         AudioListener.pause = false;
         paused = false;

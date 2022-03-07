@@ -182,6 +182,7 @@ public class characterMovement : MonoBehaviour
             {
                // Debug.Log("Attack " + attackOn);
                 animator.SetTrigger(isAttackOnHash);
+                
                 nextAttackTime = Time.time + 1f / attackRate;
                 //ExecuteAttack();
                 if (groundedPlayer)
@@ -237,8 +238,8 @@ public class characterMovement : MonoBehaviour
 
     private void ExecuteAttack()
     {
-        //animator.SetBool("Attack", true);
-
+        // launching audio of the attack
+        AudioManager.instance.PlayAttackCualli();
         // Detect enemies in range
         Collider[] hitPlayer = Physics.OverlapSphere(attackPointPlayer.position, attackPointRangePlayer, enemyLayers);
 
@@ -262,7 +263,9 @@ public class characterMovement : MonoBehaviour
     public void TakeDamagePlayer(int damage)
     {
         currentHealthPlayer -= damage;
-        healthUI.health = currentHealthPlayer;
+        // call function to update UI health
+        healthUI.UpdateHealth(maxHealthPlayer, currentHealthPlayer);
+        //healthUI.health = currentHealthPlayer;
 
         // if is dead
         if (currentHealthPlayer <= 0)
