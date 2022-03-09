@@ -18,6 +18,7 @@ public class SoundEnemySoldier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // at first the sound played is walking and change the bool to wait for the running state
         if (!alreadyPlayed)
         {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("WalkingSoldier"))
@@ -25,22 +26,20 @@ public class SoundEnemySoldier : MonoBehaviour
                 AudioManager.instance.PlayWalkSoldier();
                 alreadyPlayed = true;
             }
-
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("RunningSoldier"))
-            {
-                AudioManager.instance.PlayRunSoldier();
-                alreadyPlayed = true;
-            }
-
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("AttackSoldier"))
-            {
-                AudioManager.instance.StopWalkSoldier();
-                alreadyPlayed = false;
-            }
         }
         else
         {
-
+            // if running state, it will play the audio and change the bool in case it goes back to walk
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("RunningSoldier"))
+            {
+                AudioManager.instance.PlayRunSoldier();
+                alreadyPlayed = false;
+            }
         }
+    }
+
+    public void afterPause()
+    {
+        alreadyPlayed = false;
     }
 }

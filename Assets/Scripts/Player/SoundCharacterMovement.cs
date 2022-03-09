@@ -22,9 +22,9 @@ public class SoundCharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GroundCheckk();
+        //GroundCheckk();
         Debug.Log(controller.isGrounded);
-        if (isGroundedd)
+        if (controller.isGrounded)
         {
             if (!alreadyPlayed)
             {

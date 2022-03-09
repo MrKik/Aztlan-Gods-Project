@@ -3,12 +3,18 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioSource walkCualli;
+    public AudioSource runCualli;
     public AudioSource attackCualli;
     public AudioSource dashCualli;
     public AudioSource walkSoldier;
     public AudioSource attackSoldier;
     public AudioSource uiButton;
     public AudioSource pauseButton;
+    public AudioSource damageCualli;
+    public AudioSource damageSoldier;
+    public AudioSource cacaoPick;
+    public AudioSource deathCualli;
+    public AudioSource healCualli;
 
     public static AudioManager instance;
 
@@ -29,6 +35,7 @@ public class AudioManager : MonoBehaviour
     // sounds of Cualli
     public void PlayWalkCualli()
     {
+        //runCualli.Stop();
         walkCualli.pitch = 0.79f;
         walkCualli.Play();
     }
@@ -40,6 +47,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRunCualli()
     {
+        //walkCualli.Stop();
         walkCualli.pitch = 1.0f;
         walkCualli.Play();
     }
@@ -55,7 +63,7 @@ public class AudioManager : MonoBehaviour
     }
 
     // sounds of the enemy soldier
-    public void PlayWalkSoldier()
+    public void PlayWalkSoldier(/*GameObject[] soldier*/)
     {
         walkSoldier.pitch = 1.18f;
         walkSoldier.Play();
@@ -63,8 +71,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRunSoldier()
     {
-        walkCualli.pitch = 1.6f;
-        walkCualli.Play();
+        walkSoldier.pitch = 1.6f;
+        walkSoldier.Play();
     }
 
     public void StopWalkSoldier()
@@ -74,6 +82,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAttackSoldier()
     {
+        walkSoldier.Stop();
         attackSoldier.Play();
     }
 
@@ -86,5 +95,31 @@ public class AudioManager : MonoBehaviour
     public void PlayPauseButton()
     {
         pauseButton.Play();
+    }
+
+    public void PlayDamageCualli()
+    {
+        damageCualli.Play();
+    }
+
+    public void PlayDamageSoldier()
+    {
+        walkSoldier.Stop();
+        damageSoldier.Play();
+    }
+
+    public void PlayCacaoPick()
+    {
+        cacaoPick.Play();
+    }
+
+    public void PlayDeathCualli()
+    {
+        deathCualli.Play();
+    }
+
+    public void PlayHealCualli()
+    {
+        healCualli.Play();
     }
 }

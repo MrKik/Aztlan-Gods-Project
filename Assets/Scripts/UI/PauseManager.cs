@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -11,9 +12,13 @@ public class PauseManager : MonoBehaviour
 
     public GameObject menu;
 
+    public SoundEnemySoldier soundEnemy;
+
     private void Awake()
     {
         input = new PlayerInput();
+
+        soundEnemy = GameObject.FindObjectOfType<SoundEnemySoldier>();
     }
 
     private void OnEnable()
@@ -41,33 +46,15 @@ public class PauseManager : MonoBehaviour
         paused = true;
         menu.SetActive(true);
         AudioManager.instance.StopWalkSoldier();
+        AudioManager.instance.StopWalkCualli();
         AudioManager.instance.PlayPauseButton();
     }
 
     public void ResumeGame()
     {
         StartCoroutine(WaitTime());
-        //Time.timeScale = 1;
-        //AudioListener.pause = false;
-        //paused = false;
-        //menu.SetActive(false);
     }
-
-    IEnumerator WaitTimeFrame()
-    {
-        //print(Time.time);
-        ////yield return new WaitForSecondsRealtime(0.1f);
-        
-        //print(Time.time);
-        
-        yield return new WaitForEndOfFrame();
-        Time.timeScale = 1;
-        AudioListener.pause = false;
-        paused = false;
-        menu.SetActive(false);
-    }
-        
-
+    
     IEnumerator WaitTime()
     {
         yield return new WaitForSecondsRealtime(0.3f);
@@ -75,5 +62,20 @@ public class PauseManager : MonoBehaviour
         AudioListener.pause = false;
         paused = false;
         menu.SetActive(false);
+        soundEnemy.afterPause();
+    }
+
+    IEnumerator WaitTimeMainMenu()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        paused = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void QuitToMainMenu()
+    {
+        StartCoroutine(WaitTimeMainMenu());
     }
 }

@@ -98,6 +98,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""710820ab-17d5-4787-8909-50234b4cc248"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -125,9 +134,31 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""57afa41e-2eba-4cc6-8810-a7431bd41662"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""20b6ea28-1503-4371-bc86-f1a00e1c0ef7"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6433be18-d651-4a02-9db0-b65a5c05f49d"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Run"",
@@ -168,6 +199,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""bdc583f6-2f0c-41a6-a54e-4797efb75c36"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fb490dde-57cd-4bb4-b409-4129aedabcd0"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""71385319-9cee-491c-92f8-8ac19e7fa28d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""fe3f7623-86eb-4361-9dfd-068ab7d75a33"",
                     ""path"": ""<Gamepad>/leftStick"",
@@ -191,8 +255,30 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d31020b0-d1b4-45a3-b1db-25b71fd03a24"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c317631f-96d9-449a-bcfc-aa402f2b9e71"",
                     ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aiming"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c58c416-bbfd-49dc-93ad-4466344a40af"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -208,6 +294,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a82707a-3592-400a-92d7-7039bff21156"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9fea490-0259-4b0e-8e7a-cc2adcea4219"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff2a80bb-52e7-4a5f-8bcf-512b43f960d4"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -226,6 +345,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_CharacterController_Run = m_CharacterController.FindAction("Run", throwIfNotFound: true);
         m_CharacterController_Movement3D = m_CharacterController.FindAction("Movement 3D", throwIfNotFound: true);
         m_CharacterController_PauseGame = m_CharacterController.FindAction("PauseGame", throwIfNotFound: true);
+        m_CharacterController_Heal = m_CharacterController.FindAction("Heal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -293,6 +413,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterController_Run;
     private readonly InputAction m_CharacterController_Movement3D;
     private readonly InputAction m_CharacterController_PauseGame;
+    private readonly InputAction m_CharacterController_Heal;
     public struct CharacterControllerActions
     {
         private @PlayerInput m_Wrapper;
@@ -305,6 +426,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_CharacterController_Run;
         public InputAction @Movement3D => m_Wrapper.m_CharacterController_Movement3D;
         public InputAction @PauseGame => m_Wrapper.m_CharacterController_PauseGame;
+        public InputAction @Heal => m_Wrapper.m_CharacterController_Heal;
         public InputActionMap Get() { return m_Wrapper.m_CharacterController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -338,6 +460,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @PauseGame.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnPauseGame;
+                @Heal.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
+                @Heal.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
+                @Heal.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
             }
             m_Wrapper.m_CharacterControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -366,6 +491,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
+                @Heal.started += instance.OnHeal;
+                @Heal.performed += instance.OnHeal;
+                @Heal.canceled += instance.OnHeal;
             }
         }
     }
@@ -380,5 +508,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnMovement3D(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
 }
