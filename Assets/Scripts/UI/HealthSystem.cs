@@ -16,8 +16,6 @@ public class HealthSystem : MonoBehaviour
     }
     private void Update()
     {
-
-
         if (health > numOfHearts)
         {
             health = numOfHearts;

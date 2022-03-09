@@ -29,9 +29,14 @@ public class SoldierController : MonoBehaviour
     public int maxHealth = 2;
     public int currentHealth;
     public HealthBar healthBar;
+    public GameObject uiBar;
 
     [Header("Change Color When Hit")]
     public GameObject myTextureEnemy;
+
+    //[Header("Access to the soundEnemy")]
+
+    //public SoundEnemySoldier
 
     private void Awake()
     {
@@ -57,6 +62,7 @@ public class SoldierController : MonoBehaviour
             enemyAnim.SetTrigger("IsGone");
             //Debug.Log(currentState);
             //Debug.Log(distance);
+            //AudioManager.instance.PlayWalkSoldier();
             transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speedWalk * Time.deltaTime);
             transform.LookAt(moveSpots[randomSpot]);
 
@@ -75,6 +81,7 @@ public class SoldierController : MonoBehaviour
             // play run animation
             enemyAnim.SetTrigger("Chase");
             enemyAnim.SetBool("IsAttacking", false);
+            //AudioManager.instance.PlayRunSoldier();
 
             if(distance < attackRange)
             {
@@ -118,7 +125,7 @@ public class SoldierController : MonoBehaviour
         }
     }
 
-    private void ExecuteAttack()
+    private void ExecuteAttack() // to attach at the middle of the AttackSoldier animation
     {
         // launching audio of the attack
         AudioManager.instance.PlayAttackSoldier();
@@ -130,7 +137,6 @@ public class SoldierController : MonoBehaviour
         {
             Debug.Log("Enemy " + player.name);
             player.GetComponent<characterMovement>().TakeDamagePlayer(attackDamageEnemy);
-            //transform.LookAt(player.transform);
         }
     }
 
@@ -152,6 +158,8 @@ public class SoldierController : MonoBehaviour
         currentHealth -= damage;
 
         healthBar.SetHealth(currentHealth);
+
+        AudioManager.instance.PlayDamageSoldier();
 
         enemyAnim.SetBool("IsAttacking", false);
 
@@ -176,6 +184,9 @@ public class SoldierController : MonoBehaviour
         enemyAnim.SetBool("IsDead", true);
 
         GetComponent<Collider>().enabled = false;
+
+        Destroy(uiBar);
+
         this.enabled = false;
         //if (gameObject != null)
         //{
