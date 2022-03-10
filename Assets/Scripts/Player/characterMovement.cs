@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 
 public class characterMovement : MonoBehaviour
 {
@@ -56,6 +58,11 @@ public class characterMovement : MonoBehaviour
     [Header("Change Color When Hit")]
     public GameObject myTexture;
 
+    [Header("GameOver variables")]
+    public GameObject deathUI;
+    public AudioMixer audioMixer;
+    public GameObject deathButton;
+    public GameObject deathEffect;
 
     // called when being loaded
     private void Awake()
@@ -97,6 +104,9 @@ public class characterMovement : MonoBehaviour
 
         currentHealthPlayer = maxHealthPlayer;
         healthUI.UpdateHealth(maxHealthPlayer, currentHealthPlayer);
+
+        // put normal volume to sfx
+        audioMixer.SetFloat("SFx", 0);
     }
 
     // Update is called once per frame
@@ -293,8 +303,14 @@ public class characterMovement : MonoBehaviour
         animator.SetBool(isDeadOnHash, true);
 
         GetComponent<Collider>().enabled = false;
-        this.enabled = false;
         AudioManager.instance.PlayDeathCualli();
+        Instantiate(deathEffect, new Vector3(transform.position.x,transform.position.y + 1,transform.position.z), Quaternion.identity);
+        deathUI.SetActive(true);
+        audioMixer.SetFloat("SFx", -80);
+        var eventSystem = EventSystem.current;
+        eventSystem.SetSelectedGameObject(deathButton, new BaseEventData(eventSystem));
+        this.enabled = false;
+
     }
 
 

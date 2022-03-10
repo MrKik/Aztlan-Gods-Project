@@ -22,9 +22,10 @@ public class SoundCharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //GroundCheckk();
+        GroundCheckk();
         Debug.Log(controller.isGrounded);
-        if (controller.isGrounded)
+        Debug.Log(isGroundedd);
+        if (isGroundedd)
         {
             if (!alreadyPlayed)
             {
@@ -48,11 +49,11 @@ public class SoundCharacterMovement : MonoBehaviour
                 alreadyPlayed = false;
         }
 
-        if (!controller.isGrounded && animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
-        {
-            AudioManager.instance.StopWalkCualli();
-            alreadyPlayed = true;
-        }
+        //if (!controller.isGrounded && animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+        //{
+        //    AudioManager.instance.StopWalkCualli();
+        //    alreadyPlayed = true;
+        //}
     }
 
     void GroundCheckk()

@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     // sounds of Cualli
     public void PlayWalkCualli()
     {
-        //runCualli.Stop();
+        //walkCualli.Stop();
         walkCualli.pitch = 0.79f;
         walkCualli.Play();
     }

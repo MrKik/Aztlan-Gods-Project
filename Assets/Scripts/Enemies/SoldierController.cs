@@ -34,6 +34,10 @@ public class SoldierController : MonoBehaviour
     [Header("Change Color When Hit")]
     public GameObject myTextureEnemy;
 
+    [Header("Check when hits a wall or may fall")]
+    //public LayerMask groundLayers;
+    private bool mustTurn;
+
     //[Header("Access to the soundEnemy")]
 
     //public SoundEnemySoldier
@@ -54,11 +58,12 @@ public class SoldierController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        float distance = Vector3.Distance(transform.position,target.position);
 
         // idle state (patrolling state)
         if (currentState == "WalkingState")
         {
+            mustTurn = false;
             enemyAnim.SetTrigger("IsGone");
             //Debug.Log(currentState);
             //Debug.Log(distance);
@@ -82,13 +87,13 @@ public class SoldierController : MonoBehaviour
             enemyAnim.SetTrigger("Chase");
             enemyAnim.SetBool("IsAttacking", false);
             //AudioManager.instance.PlayRunSoldier();
-
+            
             if(distance < attackRange)
             {
                 currentState = "AttackState";
             }
 
-            if(distance > 3*attackRange)
+            if(distance > 3*attackRange || mustTurn)
             {
                 currentState = "WalkingState";
             }
@@ -123,8 +128,21 @@ public class SoldierController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, transform.position, 0.0f * Time.deltaTime);
         }
+
+        else if (currentState == "TurnState")
+        {
+            if (distance > 3*attackRange)
+            {
+                currentState = "WalkingState";
+            }
+        }
     }
 
+    // function to call by the collider when its not grounded or hit a wall
+    public void Wall()
+    {
+        mustTurn = true;
+    }
     private void ExecuteAttack() // to attach at the middle of the AttackSoldier animation
     {
         // launching audio of the attack

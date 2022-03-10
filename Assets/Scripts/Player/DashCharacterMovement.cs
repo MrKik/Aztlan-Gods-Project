@@ -11,7 +11,7 @@ public class DashCharacterMovement : MonoBehaviour
 
     // variables to dash with characther controller
     private CharacterController ccontroller;
-    public float dashSpeed;
+    private float dashSpeed = 30.0f;
     private float dashTime;
     public float startDashTime;
     private bool direction;
@@ -102,6 +102,13 @@ public class DashCharacterMovement : MonoBehaviour
 
     void handleDash()
     {
+        Debug.Log(aimDash.x);
+        Debug.Log(aimDash.y);
+        dashSpeed = Mathf.Clamp(dashSpeed, 1.0f, 30.0f);
+        aimDash.x = Mathf.Clamp(aimDash.x, -1.0f, 1.0f);
+        aimDash.y = Mathf.Clamp(aimDash.y, -1.0f, 1.0f);
+        Debug.Log("New"+aimDash.x);
+        Debug.Log("New" + aimDash.y);
         Vector3 move = new Vector3(aimDash.x, aimDash.y, 0);
         ccontroller.Move(move * dashSpeed * Time.deltaTime);
         AudioManager.instance.PlayDashCualli();
