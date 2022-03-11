@@ -351,6 +351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2814205072947554144}
   - component: {fileID: 4964526033752010083}
+  - component: {fileID: 8297755816990628854}
   m_Layer: 0
   m_Name: Soldado
   m_TagString: Untagged
@@ -462,6 +463,21 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.028482318, y: 0.13906151, z: 0.16583928}
     m_Extent: {x: 0.9185087, y: 1.2031724, z: 0.5014155}
   m_DirtyAABB: 0
+--- !u!114 &8297755816990628854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614815982786644056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee68a4687f4bdca439c843d794e339b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 5b7bf0e039ae3a343a5358b20e31a742, type: 2}
+  duration: 0.2
+  blinkAmount: 3
 --- !u!1 &4635299233208328166
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +872,7 @@ MonoBehaviour:
   cBMAnim: {fileID: 4232387773041305690}
   shootRange: 16
   projectile: {fileID: 111768, guid: b3092c604caa8eb429d904959a1d920c, type: 3}
+  myTextureCrossbowman: {fileID: 4614815982786644056}
 --- !u!1 &7622836682354366349
 GameObject:
   m_ObjectHideFlags: 0

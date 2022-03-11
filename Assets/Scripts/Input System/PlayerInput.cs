@@ -123,7 +123,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""id"": ""c451d569-6cb0-4920-920d-caeaa86d098e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.05)"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -352,7 +352,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b6336c54-8835-4ab1-a632-98198e60a067"",
                     ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.05)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",

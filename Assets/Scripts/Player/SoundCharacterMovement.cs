@@ -44,7 +44,7 @@ public class SoundCharacterMovement : MonoBehaviour
         //    AudioManager.instance.PlayRunCualli();
         //    alreadyPlayed = false;
         //}
-        //} 
+        //} // the comments are failed attemps to change the pith of an audio depending of the animation, at the end it just play an average pitch between run pitch and walk pitch
         if (!alreadyPlayed)
         {
             if (isGroundedd && (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") || animator.GetCurrentAnimatorStateInfo(0).IsName("Run")))

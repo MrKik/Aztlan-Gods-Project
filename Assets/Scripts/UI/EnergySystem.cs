@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnergySystem : MonoBehaviour
 {
@@ -14,8 +15,24 @@ public class EnergySystem : MonoBehaviour
     public Sprite f_5Energy;
     public Sprite emptyEnergy;
 
+    [Header("Save/Load variables")]
+    private string energyPrefsName = "energy";
+
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            PlayerPrefs.DeleteKey(energyPrefsName);
+        }
+
+        LoadEnergyData();
+
+        UpdateEnergyUI(true);
+        Debug.Log(currentEnergy);
+    }
     public void UpdateEnergyUI(bool moreEnergy)
     {
+        Debug.Log(currentEnergy);
         if (moreEnergy)
         {
             currentEnergy++;
@@ -56,5 +73,15 @@ public class EnergySystem : MonoBehaviour
                 energy.sprite = fullEnergy;
                 break;
         }
+    }
+
+    public void SaveEnergyData()
+    {
+        PlayerPrefs.SetInt(energyPrefsName, currentEnergy);
+    }
+
+    public void LoadEnergyData()
+    {
+        currentEnergy = PlayerPrefs.GetInt(energyPrefsName, -1);
     }
 }

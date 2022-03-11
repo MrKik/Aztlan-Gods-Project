@@ -18,6 +18,9 @@ public class CrossbowmanController : MonoBehaviour
     // arrow to instantiate
     public GameObject projectile;
 
+    // variable to flash when damage
+    public GameObject myTextureCrossbowman;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,9 +66,14 @@ public class CrossbowmanController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Enemy died");
+        AudioManager.instance.PlayDamageSoldier();
+
+        Debug.Log("CrossbowMan died");
 
         cBMAnim.SetBool("IsDead", true);
+
+        //Flash damage
+        myTextureCrossbowman.GetComponent<FlashDamage>().Flash();
 
         GetComponent<Collider>().enabled = false;
 

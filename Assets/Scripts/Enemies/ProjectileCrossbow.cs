@@ -38,6 +38,10 @@ public class ProjectileCrossbow : MonoBehaviour
     // to damage
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Ground"))
+        {
+            DestroyProjectile();
+        }
         if(other.CompareTag("ChangeScene")) // I'm reusing the trigger of the level ending
         {
             classCharacter.TakeDamagePlayer(damageCrossbow);

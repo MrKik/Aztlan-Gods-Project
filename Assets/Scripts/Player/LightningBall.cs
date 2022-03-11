@@ -20,6 +20,7 @@ public class LightningBall : MonoBehaviour
     // bools to detect when an input is acting
     private bool ballAimed;
     private bool ballPressed;
+    private bool justOnce;
 
     // to get reference about the energy
     EnergySystem classEnergy;
@@ -42,6 +43,7 @@ public class LightningBall : MonoBehaviour
     void Start()
     {
         timeBtwThrow = startTimeBtwThrow;
+        justOnce = true;
     }
 
     // Update is called once per frame
@@ -60,6 +62,7 @@ public class LightningBall : MonoBehaviour
             {
                 isShooting = false;
                 timeBtwThrow = startTimeBtwThrow;
+                justOnce = true;
             }
             else
             {
@@ -71,6 +74,7 @@ public class LightningBall : MonoBehaviour
 
     void handleShoot()
     {
+        Debug.Log("ball");
         /*tmpBall = */Instantiate(electricityBall, transform.position, Quaternion.identity);
         //aimBall.x = Mathf.Clamp(aimBall.x, -1.0f, 1.0f);
         //aimBall.y = Mathf.Clamp(aimBall.y, -1.0f, 1.0f);
@@ -80,7 +84,11 @@ public class LightningBall : MonoBehaviour
         // all the aiming is in the bullet script, inside the prefab of BallGO
 
         //update energy calling the function
-        classEnergy.UpdateEnergyUI(false);
+        if (justOnce)
+        {
+            classEnergy.UpdateEnergyUI(false);
+            justOnce = false;
+        }
 
         //animation and effects
         cualliAnim.SetTrigger("IsLightning");

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class characterMovement : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class characterMovement : MonoBehaviour
     private float attackRate = 0.8f;
 
     [Header("Damage Settings")]
-    public int maxHealthPlayer = 5;
+    public int maxHealthPlayer;
     public int currentHealthPlayer;
     private HealthSystem healthUI;
 
@@ -64,6 +65,10 @@ public class characterMovement : MonoBehaviour
     public GameObject deathButton;
     public GameObject deathEffect;
     public GameObject trigger;
+
+    [Header("Save/Load variables")]
+    private string healthPrefsName = "Health";
+    private string maxHealthPrefsName = "MaxHealth";
 
     // called when being loaded
     private void Awake()
@@ -83,7 +88,13 @@ public class characterMovement : MonoBehaviour
         input.CharacterController.Attack.performed += ctx => attackOn = ctx.ReadValueAsButton();
 
         //input.CharacterController.Attack.canceled += ctx => attackRelease = ctx.ReadValueAsButton();
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            PlayerPrefs.DeleteKey(healthPrefsName);
+            PlayerPrefs.DeleteKey(maxHealthPrefsName);
+        }
 
+        LoadHealthData();
         healthUI = GameObject.FindObjectOfType<HealthSystem>();
     }
 
@@ -103,7 +114,7 @@ public class characterMovement : MonoBehaviour
         // set CharacterController
         controller = gameObject.GetComponent<CharacterController>();
 
-        currentHealthPlayer = maxHealthPlayer;
+        //currentHealthPlayer = maxHealthPlayer;
         healthUI.UpdateHealth(maxHealthPlayer, currentHealthPlayer);
 
         // put normal volume to sfx
@@ -334,5 +345,19 @@ public class characterMovement : MonoBehaviour
         currentHealthPlayer = maxHealthPlayer;
 
         healthUI.UpdateHealth(maxHealthPlayer, currentHealthPlayer);
+    }
+
+    public void SaveHealthData()
+    {
+        PlayerPrefs.SetInt(healthPrefsName, currentHealthPlayer);
+        PlayerPrefs.SetInt(maxHealthPrefsName, maxHealthPlayer);
+        Debug.Log("Health data saved" + healthPrefsName + maxHealthPrefsName);
+    }
+
+    public void LoadHealthData()
+    {
+        currentHealthPlayer = PlayerPrefs.GetInt(healthPrefsName, maxHealthPlayer);
+        maxHealthPlayer = PlayerPrefs.GetInt(maxHealthPrefsName, 5);
+        Debug.Log("Health data loaded" + healthPrefsName + maxHealthPrefsName);
     }
 }

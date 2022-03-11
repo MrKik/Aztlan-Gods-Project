@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ItemCount : MonoBehaviour
 {
+    // this is the script to update the UI element of the itemcount
+
     public TextMeshProUGUI txtCountCocoa;
-    private int initialCocoa = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        txtCountCocoa.text = initialCocoa.ToString();
-    }
 
     public void UpdateCocoa(int currentCocoa)
     {

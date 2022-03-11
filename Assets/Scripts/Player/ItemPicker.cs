@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ItemPicker : MonoBehaviour
 {
@@ -9,14 +10,25 @@ public class ItemPicker : MonoBehaviour
     public int pickToEnergy = 5;
     private EnergySystem energyNew;
 
+
+    [Header("Save/Load variables")]
+    private string itemCocoaPrefsName = "itemCocoa";
+
     private void Awake()
     {
         itemUI = GameObject.FindObjectOfType<ItemCount>();
         energyNew = GameObject.FindObjectOfType<EnergySystem>();
-    }
-    void Start()
-    {
-        countItem = 0;
+
+
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            PlayerPrefs.DeleteKey(itemCocoaPrefsName);
+        }
+
+        LoadCocoaData();
+
+        itemUI.UpdateCocoa(countItem);
     }
 
 
@@ -33,7 +45,16 @@ public class ItemPicker : MonoBehaviour
             {
                 energyNew.UpdateEnergyUI(true);
             }
-            //countItem = countItem + 1;
         }
+    }
+    public void SaveCocoaData()
+    {
+        PlayerPrefs.SetInt(itemCocoaPrefsName, countItem);
+        Debug.Log("item data saved" + countItem);
+    }
+
+    public void LoadCocoaData()
+    {
+        countItem = PlayerPrefs.GetInt(itemCocoaPrefsName, 0);
     }
 }
