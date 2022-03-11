@@ -25,25 +25,35 @@ public class SoundCharacterMovement : MonoBehaviour
         GroundCheckk();
         //Debug.Log(controller.isGrounded);
         //Debug.Log(isGroundedd);
-        if (isGroundedd)
+        //if (isGroundedd)
+        //{
+        //    if (!alreadyPlayed)
+        //    {
+        //        AudioManager.instance.PlayWalkCualli();
+        //        alreadyPlayed = true;
+        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        //{
+        //    AudioManager.instance.PlayWalkCualli();
+        //    alreadyPlayed = true;
+        //}
+
+
+        //}
+        //else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+        //{
+        //    AudioManager.instance.PlayRunCualli();
+        //    alreadyPlayed = false;
+        //}
+        //} 
+        if (!alreadyPlayed)
         {
-            if (!alreadyPlayed)
+            if (isGroundedd && (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") || animator.GetCurrentAnimatorStateInfo(0).IsName("Run")))
             {
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
-                {
-                    AudioManager.instance.PlayWalkCualli();
-                    alreadyPlayed = true;
-                }
-
-
+                AudioManager.instance.PlayWalkCualli();
+                alreadyPlayed = true;
             }
-            else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
-            {
-                AudioManager.instance.PlayRunCualli();
-                alreadyPlayed = false;
-            }
-        } 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || !controller.isGrounded)
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || !isGroundedd)
         {
                 AudioManager.instance.StopWalkCualli();
                 alreadyPlayed = false;

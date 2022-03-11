@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - SuperCacao
   - ChangeScene
+  - EnemyCrossbow
   layers:
   - Default
   - TransparentFX

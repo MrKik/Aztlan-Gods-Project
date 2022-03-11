@@ -30,7 +30,7 @@ public class HealCharacter : MonoBehaviour
 
     private void OnHeal(InputAction.CallbackContext obj)
     {
-        if(classEnergy.currentEnergy > 0 && classCharacter.currentHealthPlayer < classCharacter.maxHealthPlayer)
+        if(classEnergy.currentEnergy > 0 && classCharacter.currentHealthPlayer < classCharacter.maxHealthPlayer && cualliAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             // update energy calling the function
             classEnergy.UpdateEnergyUI(false);

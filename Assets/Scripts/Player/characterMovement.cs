@@ -63,6 +63,7 @@ public class characterMovement : MonoBehaviour
     public AudioMixer audioMixer;
     public GameObject deathButton;
     public GameObject deathEffect;
+    public GameObject trigger;
 
     // called when being loaded
     private void Awake()
@@ -303,6 +304,7 @@ public class characterMovement : MonoBehaviour
         animator.SetBool(isDeadOnHash, true);
 
         GetComponent<Collider>().enabled = false;
+        trigger.SetActive(false);
         AudioManager.instance.PlayDeathCualli();
         Instantiate(deathEffect, new Vector3(transform.position.x,transform.position.y + 1,transform.position.z), Quaternion.identity);
         deathUI.SetActive(true);

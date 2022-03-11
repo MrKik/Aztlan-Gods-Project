@@ -30,7 +30,7 @@ public class AreaNextLevel : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         if (other.tag == "ChangeScene")
         {
             cualliAnim.SetBool("IsWalking", false);
@@ -42,16 +42,16 @@ public class AreaNextLevel : MonoBehaviour
                     enter++;
                 }
             if (isEnding)
-                levelLoader.GetComponent<LevelLoader>().LoadIndexLevel(2);
+                levelLoader.GetComponent<LevelLoader>().LoadIndexLevel(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
-    public void PlayCinematicAgain()
-    {
-        dialogueDirector.Play();
-        if(isEnding)
-           levelLoader.GetComponent<LevelLoader>().LoadIndexLevel(2);
-    }
+    //public void PlayCinematicAgain()
+    //{
+    //    dialogueDirector.Play();
+    //    if(isEnding)
+    //       levelLoader.GetComponent<LevelLoader>().LoadIndexLevel(2);
+    //}
 
     private void ChangeLevel(InputAction.CallbackContext obj)
     {

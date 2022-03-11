@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    // sounds MainMenu & Level_1
     public AudioSource walkCualli;
     public AudioSource runCualli;
     public AudioSource attackCualli;
@@ -16,6 +17,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource deathCualli;
     public AudioSource healCualli;
     public AudioSource superCacaoPick;
+    // sounds Level_2
+    public AudioSource arrowFly;
+    public AudioSource lightningAttack;
 
     public static AudioManager instance;
 
@@ -37,7 +41,8 @@ public class AudioManager : MonoBehaviour
     public void PlayWalkCualli()
     {
         //walkCualli.Stop();
-        walkCualli.pitch = 0.79f;
+        //walkCualli.pitch = 0.79f;
+        walkCualli.pitch = 0.9f;
         walkCualli.Play();
     }
 
@@ -129,4 +134,13 @@ public class AudioManager : MonoBehaviour
         superCacaoPick.Play();
     }
 
+    // sounds of the crossbowman Enemy
+    public void PlayArrowFly()
+    {
+        arrowFly.Play();
+    }
+    public void PlayLightningAttack()
+    {
+        lightningAttack.Play();
+    }
 }

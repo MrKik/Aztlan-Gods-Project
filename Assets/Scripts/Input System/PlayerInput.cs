@@ -109,12 +109,21 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Textok"",
-                    ""type"": ""Button"",
-                    ""id"": ""f9f708ba-65d9-4747-8e50-1ae10da4baf0"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""AimBall"",
+                    ""type"": ""Value"",
+                    ""id"": ""27c709d9-f08e-4ef4-b416-5e6d354cace2"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""c451d569-6cb0-4920-920d-caeaa86d098e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.05)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -330,12 +339,23 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cae39081-19fb-4466-9521-2963febf8834"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""id"": ""b433517a-63ce-4806-943b-7b6030413729"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Textok"",
+                    ""action"": ""AimBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6336c54-8835-4ab1-a632-98198e60a067"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -355,7 +375,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_CharacterController_Movement3D = m_CharacterController.FindAction("Movement 3D", throwIfNotFound: true);
         m_CharacterController_PauseGame = m_CharacterController.FindAction("PauseGame", throwIfNotFound: true);
         m_CharacterController_Heal = m_CharacterController.FindAction("Heal", throwIfNotFound: true);
-        m_CharacterController_Textok = m_CharacterController.FindAction("Textok", throwIfNotFound: true);
+        m_CharacterController_AimBall = m_CharacterController.FindAction("AimBall", throwIfNotFound: true);
+        m_CharacterController_Shoot = m_CharacterController.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -424,7 +445,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterController_Movement3D;
     private readonly InputAction m_CharacterController_PauseGame;
     private readonly InputAction m_CharacterController_Heal;
-    private readonly InputAction m_CharacterController_Textok;
+    private readonly InputAction m_CharacterController_AimBall;
+    private readonly InputAction m_CharacterController_Shoot;
     public struct CharacterControllerActions
     {
         private @PlayerInput m_Wrapper;
@@ -438,7 +460,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Movement3D => m_Wrapper.m_CharacterController_Movement3D;
         public InputAction @PauseGame => m_Wrapper.m_CharacterController_PauseGame;
         public InputAction @Heal => m_Wrapper.m_CharacterController_Heal;
-        public InputAction @Textok => m_Wrapper.m_CharacterController_Textok;
+        public InputAction @AimBall => m_Wrapper.m_CharacterController_AimBall;
+        public InputAction @Shoot => m_Wrapper.m_CharacterController_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_CharacterController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -475,9 +498,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Heal.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
                 @Heal.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
                 @Heal.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
-                @Textok.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnTextok;
-                @Textok.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnTextok;
-                @Textok.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnTextok;
+                @AimBall.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnAimBall;
+                @AimBall.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnAimBall;
+                @AimBall.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnAimBall;
+                @Shoot.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_CharacterControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -509,9 +535,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
-                @Textok.started += instance.OnTextok;
-                @Textok.performed += instance.OnTextok;
-                @Textok.canceled += instance.OnTextok;
+                @AimBall.started += instance.OnAimBall;
+                @AimBall.performed += instance.OnAimBall;
+                @AimBall.canceled += instance.OnAimBall;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -527,6 +556,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMovement3D(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
-        void OnTextok(InputAction.CallbackContext context);
+        void OnAimBall(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

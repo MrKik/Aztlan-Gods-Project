@@ -87,12 +87,21 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Textok",
-                    "type": "Button",
-                    "id": "f9f708ba-65d9-4747-8e50-1ae10da4baf0",
-                    "expectedControlType": "Button",
+                    "name": "AimBall",
+                    "type": "Value",
+                    "id": "27c709d9-f08e-4ef4-b416-5e6d354cace2",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "c451d569-6cb0-4920-920d-caeaa86d098e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.05)",
                     "initialStateCheck": false
                 }
             ],
@@ -308,12 +317,23 @@
                 },
                 {
                     "name": "",
-                    "id": "cae39081-19fb-4466-9521-2963febf8834",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "Press(behavior=2)",
+                    "id": "b433517a-63ce-4806-943b-7b6030413729",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Textok",
+                    "action": "AimBall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6336c54-8835-4ab1-a632-98198e60a067",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
