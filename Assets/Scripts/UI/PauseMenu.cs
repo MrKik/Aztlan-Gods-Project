@@ -7,6 +7,11 @@ public class PauseMenu : MonoBehaviour
 {
     public void QuitToMainMenu()
     {
+        StartCoroutine(WaitTimeExit());
+    }
+    IEnumerator WaitTimeExit()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
         SceneManager.LoadScene("MainMenu");
     }
 }

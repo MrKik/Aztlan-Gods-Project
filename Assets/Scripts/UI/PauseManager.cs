@@ -69,6 +69,12 @@ public class PauseManager : MonoBehaviour
 
     public void QuitToMainMenu()
     {
+        StartCoroutine(WaitTimeExit());
+    }
+
+    IEnumerator WaitTimeExit()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
         Time.timeScale = 1;
         AudioListener.pause = false;
         paused = false;
