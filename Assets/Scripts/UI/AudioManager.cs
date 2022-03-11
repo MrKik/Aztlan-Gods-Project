@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource cacaoPick;
     public AudioSource deathCualli;
     public AudioSource healCualli;
+    public AudioSource superCacaoPick;
 
     public static AudioManager instance;
 
@@ -62,8 +63,23 @@ public class AudioManager : MonoBehaviour
         dashCualli.Play();
     }
 
+    public void PlayDeathCualli()
+    {
+        deathCualli.Play();
+    }
+
+    public void PlayHealCualli()
+    {
+        healCualli.Play();
+    }
+
+    public void PlayDamageCualli()
+    {
+        damageCualli.Play();
+    }
+
     // sounds of the enemy soldier
-    public void PlayWalkSoldier(/*GameObject[] soldier*/)
+    public void PlayWalkSoldier()
     {
         walkSoldier.pitch = 1.18f;
         walkSoldier.Play();
@@ -86,6 +102,12 @@ public class AudioManager : MonoBehaviour
         attackSoldier.Play();
     }
 
+    public void PlayDamageSoldier()
+    {
+        walkSoldier.Stop();
+        damageSoldier.Play();
+    }
+
     // ui sounds
     public void PlayUIButton()
     {
@@ -97,29 +119,14 @@ public class AudioManager : MonoBehaviour
         pauseButton.Play();
     }
 
-    public void PlayDamageCualli()
-    {
-        damageCualli.Play();
-    }
-
-    public void PlayDamageSoldier()
-    {
-        walkSoldier.Stop();
-        damageSoldier.Play();
-    }
-
     public void PlayCacaoPick()
     {
         cacaoPick.Play();
     }
 
-    public void PlayDeathCualli()
+    public void PlaySuperCacaoPick()
     {
-        deathCualli.Play();
+        superCacaoPick.Play();
     }
 
-    public void PlayHealCualli()
-    {
-        healCualli.Play();
-    }
 }

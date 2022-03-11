@@ -12,7 +12,9 @@ public class PauseManager : MonoBehaviour
 
     public GameObject menu;
 
-    public SoundEnemySoldier soundEnemy;
+    private SoundEnemySoldier soundEnemy;
+
+    public GameObject levelLoader;
 
     private void Awake()
     {
@@ -65,17 +67,11 @@ public class PauseManager : MonoBehaviour
         soundEnemy.afterPause();
     }
 
-    IEnumerator WaitTimeMainMenu()
+    public void QuitToMainMenu()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
         Time.timeScale = 1;
         AudioListener.pause = false;
         paused = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-    }
-
-    public void QuitToMainMenu()
-    {
-        StartCoroutine(WaitTimeMainMenu());
+        levelLoader.GetComponent<LevelLoader>().LoadIndexLevel(0);
     }
 }

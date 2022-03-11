@@ -10,7 +10,7 @@ public class DialogueCinematic : MonoBehaviour
     public GameObject Cualli;
     public GameObject canvasWorld;
     PlayerInput input;
-    DashCharacterMovement dashChanged;
+    //DashCharacterMovement dashChanged;
 
     public void PlayCinematic(InputAction.CallbackContext obj)
     {

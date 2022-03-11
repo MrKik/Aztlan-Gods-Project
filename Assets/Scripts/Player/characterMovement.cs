@@ -34,7 +34,7 @@ public class characterMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private float playerSpeed = 2.0f;
+    public float playerSpeed = 2.0f;
     private float originalSpeed = 2.0f;
     private float runningSpeed = 4.0f;
     private float jumpHeight = 1.0f;
@@ -324,5 +324,13 @@ public class characterMovement : MonoBehaviour
     public void StopWhenHealing()
     {
         playerSpeed = 0;
+    }
+
+    public void UpdateAmountOfHearts()
+    {
+        maxHealthPlayer += 1;
+        currentHealthPlayer = maxHealthPlayer;
+
+        healthUI.UpdateHealth(maxHealthPlayer, currentHealthPlayer);
     }
 }

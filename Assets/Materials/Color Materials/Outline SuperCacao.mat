@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Outline SuperCocoa
+  m_Name: Outline SuperCacao
   m_Shader: {fileID: -6465566751694194690, guid: 3c3779d1df337624fb0232040ad77b03, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

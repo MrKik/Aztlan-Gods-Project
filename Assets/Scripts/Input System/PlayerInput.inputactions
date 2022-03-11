@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Textok",
+                    "type": "Button",
+                    "id": "f9f708ba-65d9-4747-8e50-1ae10da4baf0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -255,17 +264,6 @@
                 },
                 {
                     "name": "",
-                    "id": "4c58c416-bbfd-49dc-93ad-4466344a40af",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f7156b63-2bea-4fbf-98a1-91314296eb61",
                     "path": "<Gamepad>/start",
                     "interactions": "",
@@ -305,6 +303,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cae39081-19fb-4466-9521-2963febf8834",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Textok",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

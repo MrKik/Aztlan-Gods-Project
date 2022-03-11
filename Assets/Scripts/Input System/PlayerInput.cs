@@ -107,6 +107,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Textok"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9f708ba-65d9-4747-8e50-1ae10da4baf0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -277,17 +286,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4c58c416-bbfd-49dc-93ad-4466344a40af"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aiming"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f7156b63-2bea-4fbf-98a1-91314296eb61"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
@@ -329,6 +327,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cae39081-19fb-4466-9521-2963febf8834"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Textok"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -346,6 +355,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_CharacterController_Movement3D = m_CharacterController.FindAction("Movement 3D", throwIfNotFound: true);
         m_CharacterController_PauseGame = m_CharacterController.FindAction("PauseGame", throwIfNotFound: true);
         m_CharacterController_Heal = m_CharacterController.FindAction("Heal", throwIfNotFound: true);
+        m_CharacterController_Textok = m_CharacterController.FindAction("Textok", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -414,6 +424,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CharacterController_Movement3D;
     private readonly InputAction m_CharacterController_PauseGame;
     private readonly InputAction m_CharacterController_Heal;
+    private readonly InputAction m_CharacterController_Textok;
     public struct CharacterControllerActions
     {
         private @PlayerInput m_Wrapper;
@@ -427,6 +438,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Movement3D => m_Wrapper.m_CharacterController_Movement3D;
         public InputAction @PauseGame => m_Wrapper.m_CharacterController_PauseGame;
         public InputAction @Heal => m_Wrapper.m_CharacterController_Heal;
+        public InputAction @Textok => m_Wrapper.m_CharacterController_Textok;
         public InputActionMap Get() { return m_Wrapper.m_CharacterController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -463,6 +475,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Heal.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
                 @Heal.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
                 @Heal.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnHeal;
+                @Textok.started -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnTextok;
+                @Textok.performed -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnTextok;
+                @Textok.canceled -= m_Wrapper.m_CharacterControllerActionsCallbackInterface.OnTextok;
             }
             m_Wrapper.m_CharacterControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -494,6 +509,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
+                @Textok.started += instance.OnTextok;
+                @Textok.performed += instance.OnTextok;
+                @Textok.canceled += instance.OnTextok;
             }
         }
     }
@@ -509,5 +527,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMovement3D(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnTextok(InputAction.CallbackContext context);
     }
 }

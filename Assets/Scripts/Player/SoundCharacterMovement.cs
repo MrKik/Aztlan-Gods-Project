@@ -23,8 +23,8 @@ public class SoundCharacterMovement : MonoBehaviour
     void Update()
     {
         GroundCheckk();
-        Debug.Log(controller.isGrounded);
-        Debug.Log(isGroundedd);
+        //Debug.Log(controller.isGrounded);
+        //Debug.Log(isGroundedd);
         if (isGroundedd)
         {
             if (!alreadyPlayed)

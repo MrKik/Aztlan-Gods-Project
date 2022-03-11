@@ -63,7 +63,6 @@ public class SoldierController : MonoBehaviour
         // idle state (patrolling state)
         if (currentState == "WalkingState")
         {
-            mustTurn = false;
             enemyAnim.SetTrigger("IsGone");
             //Debug.Log(currentState);
             //Debug.Log(distance);
@@ -74,9 +73,10 @@ public class SoldierController : MonoBehaviour
             if (Vector3.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
             {
                 randomSpot = Random.Range(0, moveSpots.Length);
+                mustTurn = false;
             }
 
-            if (distance < chaseRange)
+            if (distance < chaseRange && !mustTurn)
                 currentState = "ChaseState";
         } 
         
@@ -93,7 +93,12 @@ public class SoldierController : MonoBehaviour
                 currentState = "AttackState";
             }
 
-            if(distance > 3*attackRange || mustTurn)
+            if(distance > 3*attackRange)
+            {
+                currentState = "WalkingState";
+            }
+            // while chasing if hit a wall, it'll get back to walking
+            if(mustTurn)
             {
                 currentState = "WalkingState";
             }
@@ -138,10 +143,11 @@ public class SoldierController : MonoBehaviour
         }
     }
 
-    // function to call by the collider when its not grounded or hit a wall
+    // function to call by the collider when its not grounded or hit a wall (class in WallHit gameObject)
     public void Wall()
     {
         mustTurn = true;
+        Debug.Log("Mustturn");
     }
     private void ExecuteAttack() // to attach at the middle of the AttackSoldier animation
     {
